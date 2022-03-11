@@ -8,6 +8,10 @@ void print(string msg);
 string getAlgorithmAndFrameInput();
 string getPageInput();
 void accessPage(int pageNum);
+void beldayReplacement();
+void clockReplacement();
+void fifoReplacement();
+void lruReplacement();
 
 string algorithm = "";
 int frameNums;
@@ -35,10 +39,10 @@ string getUserInput() {
 
 void print(string msg) {
     cout << msg;
-
 }
 
 string getAlgorithmAndFrameInput() {
+    print("\nPick a page replacement algorithm \n(BELDAY, CLOCK, FIFO, LRU)\n\n");
     print("algorithm> ");
 
     string input = getUserInput();
@@ -47,6 +51,9 @@ string getAlgorithmAndFrameInput() {
     if (pivot < 0 || pivot > input.length()) return "";
 
     algorithm = input.substr(0, pivot);
+
+    for (int i = 0; i < algorithm.length(); i++) 
+        algorithm[i] = toupper(algorithm[i]);
 
     try {
         frameNums = stoi(input.substr(pivot));
@@ -59,9 +66,6 @@ string getAlgorithmAndFrameInput() {
      && algorithm != "FIFO" 
      && algorithm != "LRU"
     ) return "";
-
-    // cout << algorithm << endl;
-    // cout << frameNums << endl;
 
     return input;
 }
